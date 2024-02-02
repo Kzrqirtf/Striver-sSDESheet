@@ -35,8 +35,8 @@ public:
         //     k--;
         // }
         // return head;
+        if (head == nullptr || head->next == nullptr)
         {
-        if (head == nullptr || head->next == nullptr) {
             return head;
         }
 
@@ -64,7 +64,6 @@ public:
         temp->next = newHead;
 
         return rotatedHead;
-    }
         
     }
 };
