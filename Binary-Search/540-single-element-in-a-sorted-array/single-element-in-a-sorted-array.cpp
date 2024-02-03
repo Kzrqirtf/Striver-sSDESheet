@@ -16,7 +16,7 @@ public:
             }
 
             // Adjust start and end based on conditions
-            if (mid % 2 == 0) {
+            else if (mid % 2 == 0) {
                 if (mid < n - 1 && nums[mid] == nums[mid + 1]) {
                     start = mid + 2;
                 } else {
