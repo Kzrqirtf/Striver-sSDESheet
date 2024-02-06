@@ -1,76 +1,77 @@
 <h2><a href="https://www.codingninjas.com/studio/problems/ayush-gives-ninjatest_1097574?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website">Allocate Books</a></h2> 
 <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr>
 
-<p>Ayush is studying for ninjatest which will be held after 'N' days, And to score good marks he has to study 'M' chapters and the ith chapter requires TIME[i] seconds to study. The day in Ayush’s world has 100^100 seconds. There are some rules that are followed by Ayush while studying.
+<p>
+Given an array ‘arr’ of integer numbers, ‘arr[i]’ represents the number of pages in the ‘i-th’ book.
 
-1. He reads the chapter in a sequential order, i.e. he studies i+1th chapter only after he studies ith chapter.
 
-2. If he starts some chapter on a particular day he completes it that day itself.
 
-3. He wants to distribute his workload over 'N' days, so he wants to minimize the maximum amount of time he studies in a day.
+There are ‘m’ number of students, and the task is to allocate all the books to the students.
 
-Your task is to find out the minimal value of the maximum amount of time for which Ayush studies in a day, in order to complete all the 'M' chapters in no more than 'N' days.
 
-For example
 
-if Ayush want to study 6 chapters in 3 days and the time that each chapter requires is as follows:
-Chapter 1 = 30
-Chapter 2 = 20
-Chapter 3 = 10
-Chapter 4 = 40
-Chapter 5 = 5
-Chapter 6 = 45
+Allocate books in such a way that:
 
-Then he will study the chapters in the following order 
+1. Each student gets at least one book.
+2. Each book should be allocated to only one student.
+3. Book allocation should be in a contiguous manner.
 
-| day 1 : 1 , 2 | day 2 : 3 , 4 | day 3 : 5 , 6 |
-Here we can see that he study chapters in sequential order and the maximum time to study on a day is 50, which is the minimum possible in this case..</p>
+
+You have to allocate the book to ‘m’ students such that the maximum number of pages assigned to a student is minimum.
+
+
+
+If the allocation of books is not possible, return -1.</p>
 
 <p>&nbsp;</p>
-<p><strong class="example">Example 1:</strong></p>
+<p><strong class="example">Example :</strong></p>
 <pre>
-  Sample Input 1:
-  
-1
-3 5
-1 2 2 3 1
-
+Sample Input 1:
+4 2
+12 34 67 90
 Sample Output 1:
-4
-
+113
 Explanation of sample input 1:
-The ayush will read the chapter as follows,
-Day 1 : 1 , 2         Time required : 3
-Day 2 : 3             Time required : 2
-Day 3 : 4 , 5         Time required : 4
-So the maximum time in a day is 4.
+All possible ways to allocate the ‘4’ books to '2' students are:
 
+12 | 34, 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12’, and student two is ‘34+ 67+ 90 = 191’, so the maximum is ‘max(12, 191)= 191’.
+
+12, 34 | 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 = 46’, and student two is ‘67+ 90 = 157’, so the maximum is ‘max(46, 157)= 157’.
+
+12, 34, 67 | 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 +67 = 113’, and student two is ‘90’, so the maximum is ‘max(113, 90)= 113’.
+
+We are getting the minimum in the last case.
+
+Hence answer is ‘113’.
 Sample Input 2:
-
-1
-4 7
-2 2 3 3 4 4 1 
-
+5 4
+25 46 28 49 24
 Sample Output 2:
-6
-
+71
 Explanation of sample input 2:
+All possible ways to allocate the ‘5’ books to '4' students are:
 
-The ayush will read the chapter as follows,
-Day 1 : 1 , 2          Time required : 4
-Day 2 : 3 , 4          Time required : 6
-Day 3 : 5              Time required : 4
-Day 4 : 6 , 7          Time required : 5
-So the maximum time in a day is 6.
+25 | 46 | 28 | 49 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '46', '28', and '73'. So the maximum is '73'.
+
+25 | 46 | 28 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '46', '77', and '24'. So the maximum is '77'.
+
+25 | 46 28 | 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '74', '49', and '24'. So the maximum is '74'.
+
+25 46 | 28 | 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '71', '28', '49', and '24'. So the maximum is '71'.
+
+We are getting the minimum in the last case.
+
+Hence answer is ‘71’.
 </pre>
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 <= T <= 10
-1 <= N , M <= 10 ^ 4
-1 <= TIME[i] <= 10 ^ 9 
-It is considered that there are infinite seconds in a day, on the planet where Ayush lives.
-
-Time limit: 1 sec.</code></li>
+	<li><code>2 <= 'n' <= 10 ^ 3
+1 <= 'm' <= 10 ^ 3
+1 <= 'arr[i]' <= 10 ^ 9
+The sum of all arr[i] does not exceed 10 ^ 9.
+Expected time complexity:
+The expected time complexity is O(n * log(s)), where ‘n’ is the number of integers in the array ‘arr’ and ‘s’ is the sum of all the elements of ‘arr’.
+</code></li>
 </ul>
