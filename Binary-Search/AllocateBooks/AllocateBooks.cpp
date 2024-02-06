@@ -22,10 +22,14 @@ int findPages(vector<int>& arr, int n, int m) {
 
     int low = *max_element(arr.begin(), arr.end());
     int high = accumulate(arr.begin(), arr.end(), 0);
-
-    for (int pages = low; pages <= high; pages++) {
-        if (countStudents(arr, pages) == m) {
-            return pages;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        int students = countStudents(arr, mid);
+        if (students > m) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
         }
     }
     return low;
